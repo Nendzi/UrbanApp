@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationPackage SchemaVersion="1.0"
+					AutodeskProduct="AutoCAD"
+					ProductType="Application"
+					Name="Creates palettes"
+					Description="Creates and maintences tool palettes"
+					AppVersion="1.0.0"
+					HelpFile="./Contents/Resources/Help.html"
+					Author="TeamCAD - MFG division"
+					Icon="./Contents/Resources/Logo.bmp"
+					ProductCode="ADB8A9F8-E340-429E-BC10-1FE38D69A2D4">
+	<CompanyDetails Name="TeamCAD" Url="www.teamcad.rs" Email="nedeljko.sovljanski@teamcad.rs"/>
+	<Components Description="Runtime parts">
+		<RuntimeRequirements OS="Win32|Win64" Platform="AutoCAD|AutoCAD*" SeriesMin="R19.1" SeriesMax="R24.4"/>
+		<ComponentEntry AppName="UrbanTool" Version="1.0.0" ModuleName="./Contents/Runtime/UrbanTool.dll"  LoadOnAutoCADStartup="True"/>
+	</Components>
+</ApplicationPackage>

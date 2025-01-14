@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="accoremgd">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2025\accoremgd.dll</HintPath>
+    </Reference>
+    <Reference Include="Acdbmgd">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2025\acdbmgd.dll</HintPath>
+    </Reference>
+    <Reference Include="Acmgd">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2025\acmgd.dll</HintPath>
+    </Reference>
+    <Reference Include="AcTcMgd">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2025\AcTcMgd.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Connectivity.WebServices">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Vault Client 2025\Explorer\Autodesk.Connectivity.WebServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autodesk.DataManagement.Client.Framework">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Vault Client 2025\Explorer\Autodesk.DataManagement.Client.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autodesk.DataManagement.Client.Framework.Vault">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Vault Client 2025\Explorer\Autodesk.DataManagement.Client.Framework.Vault.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+		<FrameworkReference Include="Microsoft.WindowsDesktop.App.WPF" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="XCopy &quot;$(TargetPath)&quot;  &quot;%25AppData%25\Autodesk\ApplicationPlugins\$(ProjectName).bundle\Contents\Runtime\net8.0\&quot; /Y /R&#xD;&#xA;XCopy &quot;$(TargetDir)\$(ProjectName).pdb&quot;  &quot;%25AppData%25\Autodesk\ApplicationPlugins\$(ProjectName).bundle\Contents\Runtime\net8.0\&quot; /Y /R&#xD;&#xA;XCopy &quot;$(ProjectDir)PackageContents.xml&quot;  &quot;%25AppData%25\Autodesk\ApplicationPlugins\$(ProjectName).bundle\&quot; /Y /R" />
+  </Target>
+
+</Project>
