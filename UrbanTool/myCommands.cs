@@ -3,6 +3,7 @@
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Runtime;
+using Autodesk.AutoCAD.Windows.ToolPalette;
 
 using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 
@@ -37,6 +38,19 @@ namespace UrbanTool
 			if (doc != null && MyPlugin.IsReady)
 			{
 				Autodesk.AutoCAD.Windows.ToolPalette.ToolPaletteManager mgr = Autodesk.AutoCAD.Windows.ToolPalette.ToolPaletteManager.Manager;
+				foreach (Catalog item in mgr.Catalogs)
+				{
+					string itemName = item.Name;
+					System.Guid itemGuid= item.ID;
+					if (item.HasChildren)
+					{
+						for (int i = 0; i < item.ChildCount; i++)
+						{
+							Palette child = item.GetChild(i) as Palette;
+							System.Guid xml = child.ID;
+						}
+					}
+				}
 				mgr.LoadCatalogs();
 			}
 			else

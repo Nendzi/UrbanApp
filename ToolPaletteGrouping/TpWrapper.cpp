@@ -2,6 +2,7 @@
 
 #include "TpWrapper.h"
 
+#include "mgdinterop.h"
 #include <vcclr.h>
 
 using namespace ToolPaletteWrapper;
@@ -73,30 +74,30 @@ void MyUtilities::CreateToolPaletteGroup(System::String^ toolPaletteGroupName)
 	CAcTcUiToolPaletteGroup* pRootTpgroup = pTpset->GetToolPaletteGroup(FALSE);
 
 	CAcTcUiToolPaletteGroup* pMyToolPaletteGroup = NULL;
-	//pMyToolPaletteGroup = pRootTpgroup->FindGroup(StringToCIF(toolPaletteGroupName), TRUE);
-	//if (pMyToolPaletteGroup == NULL)
-	//{ // Does not exist, lets create it
+	pMyToolPaletteGroup = pRootTpgroup->FindGroup(StringToCIF(toolPaletteGroupName), TRUE);
+	if (pMyToolPaletteGroup == NULL)
+	{ // Does not exist, lets create it
 
-	//	// Create a new Palette Group
-	//	CAcTcUiToolPaletteGroup* pMyToolPaletteGroup = NULL;
-	//	pRootTpgroup->Clone(pMyToolPaletteGroup);
-	//	pMyToolPaletteGroup->Reset();
-	//	pMyToolPaletteGroup->SetName(StringToCIF(toolPaletteGroupName));
+		// Create a new Palette Group
+		CAcTcUiToolPaletteGroup* pMyToolPaletteGroup = NULL;
+		pRootTpgroup->Clone(pMyToolPaletteGroup);
+		pMyToolPaletteGroup->Reset();
+		pMyToolPaletteGroup->SetName(StringToCIF(toolPaletteGroupName));
 
-	//	// Any Palette can be found in the "All Palettes group"
-	//	CAcTcUiToolPaletteGroup* pAllPalettesGroup = pTpset->GetAllPalettesGroup();
-	//	CAcTcUiToolPalette* pMechanicalPalette = pAllPalettesGroup->FindPalette(ACRX_T("Mechanical"), NULL);
+		// Any Palette can be found in the "All Palettes group"
+		CAcTcUiToolPaletteGroup* pAllPalettesGroup = pTpset->GetAllPalettesGroup();
+		CAcTcUiToolPalette* pMechanicalPalette = pAllPalettesGroup->FindPalette(ACRX_T("Mechanical"), NULL);
 
-	//	// Add it to the palette group
-	//	pMyToolPaletteGroup->AddItem(pMechanicalPalette);
+		// Add it to the palette group
+		pMyToolPaletteGroup->AddItem(pMechanicalPalette);
 
-	//	// Create a new palette and add it to the palette group
-	//	CAcTcUiManager* pToolPaletteManager = AcTcUiGetManager();
-	//	CAcTcUiToolPalette* pMyToolPalette = pToolPaletteManager->CreatePalette(ACRX_T("MyPalette"));
-	//	pMyToolPaletteGroup->AddItem(pMyToolPalette);
+		// Create a new palette and add it to the palette group
+		CAcTcUiManager* pToolPaletteManager = AcTcUiGetManager();
+		CAcTcUiToolPalette* pMyToolPalette = pToolPaletteManager->CreatePalette(ACRX_T("MyPalette"));
+		pMyToolPaletteGroup->AddItem(pMyToolPalette);
 
-	//	pRootTpgroup->AddItem(pMyToolPaletteGroup);
-	//}
+		pRootTpgroup->AddItem(pMyToolPaletteGroup);
+	}
 
 	// Set the newly create Palette group as active
 	pTpset->SetActivePaletteGroup(pMyToolPaletteGroup);
@@ -109,34 +110,34 @@ void MyUtilities::RemoveToolPaletteGroup(System::String^ toolPaletteGroupName)
 	CAcTcUiToolPaletteGroup* pActivePaletteGroup = pTpset->GetActivePaletteGroup();
 	CString activePaletteGroupName = pActivePaletteGroup->GetName();
 
-	//if (activePaletteGroupName == StringToCIF(toolPaletteGroupName))
-	//{// Set All palettes as the active group before we mess around with our tool palette group :)
-	//	CAcTcUiToolPaletteGroup* pAllPalettesGroup = pTpset->GetAllPalettesGroup();
-	//	pTpset->SetActivePaletteGroup(pAllPalettesGroup);
-	//}
+	if (activePaletteGroupName == StringToCIF(toolPaletteGroupName))
+	{// Set All palettes as the active group before we mess around with our tool palette group :)
+		CAcTcUiToolPaletteGroup* pAllPalettesGroup = pTpset->GetAllPalettesGroup();
+		pTpset->SetActivePaletteGroup(pAllPalettesGroup);
+	}
 
 	CAcTcUiToolPaletteGroup* pRootTpgroup = pTpset->GetToolPaletteGroup(FALSE);
 
-	//CAcTcUiToolPaletteGroup* pMyToolPaletteGroup = pRootTpgroup->FindGroup(StringToCIF(toolPaletteGroupName), TRUE);
-	//if (pMyToolPaletteGroup != NULL)
-	//{ // Lets remove the group
+	CAcTcUiToolPaletteGroup* pMyToolPaletteGroup = pRootTpgroup->FindGroup(StringToCIF(toolPaletteGroupName), TRUE);
+	if (pMyToolPaletteGroup != NULL)
+	{ // Lets remove the group
 
-	//	// Remove all sub groups and palettes from this palette group
-	//	pMyToolPaletteGroup->DeleteAllItems();
+		// Remove all sub groups and palettes from this palette group
+		pMyToolPaletteGroup->DeleteAllItems();
 
-	//	// Other options...
-	//	//pMyToolPaletteGrp->DeleteAllPalettes();
+		// Other options...
+		//pMyToolPaletteGrp->DeleteAllPalettes();
 
-	//	//CAcTcUiToolPalette *pPal1 = pMyToolPaletteGrp->FindPalette(ACRX_T("MyPalette"), NULL);
-	//	//if(pPal1 != NULL)
-	//	//{
-	//	//	pMyToolPaletteGrp->RemoveItem(pPal1, TRUE);
-	//	//}
+		//CAcTcUiToolPalette *pPal1 = pMyToolPaletteGrp->FindPalette(ACRX_T("MyPalette"), NULL);
+		//if(pPal1 != NULL)
+		//{
+		//	pMyToolPaletteGrp->RemoveItem(pPal1, TRUE);
+		//}
 
-	//	pRootTpgroup->RemoveItem(pMyToolPaletteGroup);
+		pRootTpgroup->RemoveItem(pMyToolPaletteGroup);
 
-	//	delete pMyToolPaletteGroup;
-	//}
+		delete pMyToolPaletteGroup;
+	}
 
 	CAcTcUiToolPaletteGroup* pAllPalettesGroup = pTpset->GetAllPalettesGroup();
 	CAcTcUiToolPalette* pMyToolPalette = pAllPalettesGroup->FindPalette(ACRX_T("MyPalette"), NULL, TRUE);

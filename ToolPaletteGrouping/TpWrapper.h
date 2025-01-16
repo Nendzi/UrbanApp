@@ -7,6 +7,7 @@
 #include "AcTcUiToolPaletteSet.h"
 #include "AcTcUiManager.h"
 
+
 namespace ToolPaletteWrapper
 {
 	public ref class MyUtilities
