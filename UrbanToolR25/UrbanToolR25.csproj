@@ -20,16 +20,13 @@
       <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2025\AcTcMgd.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.WebServices">
-      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Vault Client 2025\Explorer\Autodesk.Connectivity.WebServices.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Autodesk Vault 2025 SDK\bin\x64\core\Autodesk.Connectivity.WebServices.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework">
-      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Vault Client 2025\Explorer\Autodesk.DataManagement.Client.Framework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Autodesk Vault 2025 SDK\bin\x64\core\Autodesk.DataManagement.Client.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework.Vault">
-      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Vault Client 2025\Explorer\Autodesk.DataManagement.Client.Framework.Vault.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Autodesk Vault 2025 SDK\bin\x64\core\Autodesk.DataManagement.Client.Framework.Vault.dll</HintPath>
     </Reference>
 		<FrameworkReference Include="Microsoft.WindowsDesktop.App.WPF" />
   </ItemGroup>
